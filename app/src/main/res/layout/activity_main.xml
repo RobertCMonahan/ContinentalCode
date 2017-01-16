@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    tools:context="tech.robertmonahan.continentalcode.MainActivity"
+    >
+
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:id="@+id/output_message"
+        android:layout_marginTop="35dp"
+        android:layout_width="105px"
+        android:layout_below="@+id/input_message"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:text="SOS"
+        android:ems="10"
+        android:id="@+id/input_message"
+        android:inputType="textShortMessage|textLongMessage"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:text="Start"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/play"
+        android:id="@+id/play_pause_button"
+        android:layout_marginTop="42dp"
+        android:layout_below="@+id/output_message"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"/>
+
+    <ImageView
+        android:background="@drawable/flashing_rectangle"
+        android:id="@+id/flashing_rectangle"
+        android:layout_height="12dp"
+        android:layout_width="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentTop="true"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/userInterface">
+    <SwitchPreference
+        android:key="key_light"
+        android:defaultValue="true"
+        android:title="@string/title_light" />
+    <SwitchPreference
+        android:key="key_sound"
+        android:defaultValue="true"
+        android:title="@string/title_sound" />
+    <ListPreference
+        android:key="key_speed"
+        android:defaultValue="@string/speed_array_default"
+        android:title="@string/title_speed"
+        android:dialogTitle="@string/title_speed"
+        android:entries="@array/speed_array_entries"
+        android:entryValues="@array/speed_array_values" />
+    <SwitchPreference
+        android:key="key_dark_mode"
+        android:defaultValue="false"
+        android:title="@string/title_dark_mode" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/project">
+        <!--
+        launching websites and activities from the preference menu
+        Would you like to know more?
+        https://stackoverflow.com/questions/5330677/android-preferences-onclick-event
+        -->
+        <Preference
+            android:title="@string/about"
+            android:key="key_about">
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="tech.robertmonahan.continentalcode"
+                android:targetClass="tech.robertmonahan.continentalcode.AboutActivity"
+                />
+        </Preference>
+        <Preference
+            android:title="@string/support"
+            android:key="key_support">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/RobertCMonahan/Morse_Code_Android"
+                />
+        </Preference>
+    </PreferenceCategory>
+
+</PreferenceScreen>

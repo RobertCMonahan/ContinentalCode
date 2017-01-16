@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#D45500</color>
+    <color name="colorPrimaryDark">#803300</color>
+    <color name="colorAccent">#D45500</color>
+    <color name="colorPrimaryButtonPress">#e0884c</color>
+    <color name="colorAccentDark">#803300</color>
+    <color name="white">#FFF3E0</color>
+    <color name="darkGrey">#212121</color>
+    <color name="off">#4F4F4E</color>
+    <color name="test">#F4E</color>
+</resources>

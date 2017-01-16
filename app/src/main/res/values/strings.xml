@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Continental Code</string>
+
+    <!-- Strings related to Settings -->
+    <!-- Titles -->
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_dark_mode">Dark Mode</string>
+    <string name="title_light">Light</string>
+    <string name="title_sound">Sound</string>
+    <string name="title_speed">Speed</string>
+    <string name="settings">Settings</string>
+    <string name="support">Feedback &amp; Support</string>
+    <string name="about">About</string>
+    <string name="userInterface">User Interface</string>
+    <string name="project">Project</string>
+    <!-- Default Values -->
+    <string name="speed_array_default">Medium</string>
+
+
+</resources>

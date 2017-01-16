@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:com.morsecodeapp.morsecode="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+    Settings icon button in toolbar info found at:
+    http://www.vogella.com/tutorials/AndroidActionBar/article.html
+    &
+    https://stackoverflow.com/questions/17914017/android-4-3-menu-item-showasaction-always-ignored#17914095
+    -->
+    <item
+        android:id="@+id/settings_button"
+        android:orderInCategory="100"
+        com.morsecodeapp.morsecode:showAsAction="always"
+        android:icon="@drawable/settingsicon"
+        android:title="Settings"/>
+
+</menu>

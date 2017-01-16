@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_about"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="tech.robertmonahan.continentalcode.AboutActivity">
+
+    <ImageView
+        android:layout_width="150px"
+        android:layout_height="150px"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/logo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Created by Robert Monahan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/author"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:layout_below="@+id/about_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp" />
+
+    <TextView
+        android:text="Licensed under the MIT Licence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/license"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:layout_below="@+id/author"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp" />
+
+    <TextView
+        android:text="Morse, Version 1.0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:id="@+id/about_title"
+        android:textAppearance="@android:style/TextAppearance.Material.Headline"
+        android:layout_below="@+id/logo"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="(View)"
+        android:layout_width="55dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="9dp"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:id="@+id/license_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_marginRight="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/license"
+        android:layout_centerHorizontal="true">
+    </Button>
+
+    <TextView
+        android:text="Special Thanks To:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/special_thanks"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Lars Vogel at vogella.com&#10;Jack the Ripper,&#10;Nikola Despotoski,&#10;Garret Wilsonon,&#10;glorifiedHacker,&#10;and Mike on stackoverflow&#10;Ravi Tamada at androidhive.info&#10;JosAH at java-forums.org"
+        android:gravity="left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/people"
+        android:layout_below="@+id/special_thanks"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

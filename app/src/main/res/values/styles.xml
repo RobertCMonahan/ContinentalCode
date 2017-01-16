@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="DefaultTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <!-- Dark Mode application theme. -->
+    <style name="DarkTheme" >
+        <item name="android:alertDialogTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="android:windowBackground">@color/darkGrey</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:editTextColor">@color/white</item>
+        <item name="android:textColorAlertDialogListItem">@color/white</item>
+    </style>
+
+    <style name="AppCompatAlertDialogStyle" >
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+
+</resources>
