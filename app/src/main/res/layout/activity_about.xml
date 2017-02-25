@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    tools:context="tech.robertmonahan.continentalcode.AboutActivity"
+
+<RelativeLayout
     android:id="@+id/activity_about"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,15 +13,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="tech.robertmonahan.continentalcode.AboutActivity">
 
-    <ImageView
-        android:layout_width="150px"
-        android:layout_height="150px"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:id="@+id/logo"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true">
+
 
     <TextView
         android:text="Created by Robert Monahan"
@@ -39,16 +38,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="11dp" />
 
-    <TextView
-        android:text="Morse, Version 1.0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:id="@+id/about_title"
-        android:textAppearance="@android:style/TextAppearance.Material.Headline"
-        android:layout_below="@+id/logo"
-        android:layout_centerHorizontal="true" />
-
     <Button
         android:text="(View)"
         android:layout_width="55dp"
@@ -64,22 +53,63 @@
         android:layout_centerHorizontal="true">
     </Button>
 
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:id="@+id/logo"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/ic_launcher"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
     <TextView
-        android:text="Special Thanks To:"
+        android:text="Continental Code, Version 1.1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/special_thanks"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:layout_marginTop="11dp"
+        android:id="@+id/about_title"
+        android:textAppearance="@android:style/TextAppearance.Material.Headline"
+        android:layout_below="@+id/logo"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="Lars Vogel at vogella.com&#10;Jack the Ripper,&#10;Nikola Despotoski,&#10;Garret Wilsonon,&#10;glorifiedHacker,&#10;and Mike on stackoverflow&#10;Ravi Tamada at androidhive.info&#10;JosAH at java-forums.org"
         android:gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/people"
+        android:id="@+id/textView4"
         android:layout_below="@+id/special_thanks"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:text="Special Thanks To:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/special_thanks"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:layout_marginTop="42dp"
+        android:layout_below="@+id/answer_name"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:text='Why the name "Continental Code?"'
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/license_button"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/answer_name"
+        android:text='      Morse code was standardized in 1848 by Friedrich Gerke and was named "The Modern International Morse code" or more elegantly "continental code," in contrast to American Morse code which was also popular in the USA at the time.'
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
+</ScrollView>

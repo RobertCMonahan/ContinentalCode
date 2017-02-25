@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     tools:context="tech.robertmonahan.continentalcode.MainActivity">
 
+
     <TextView
         android:layout_height="wrap_content"
         android:id="@+id/output_message"
@@ -22,12 +23,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_width="330dp"
-        android:isScrollContainer="true"
-        android:scrollHorizontally="true"
-        android:scrollbarAlwaysDrawHorizontalTrack="true"
-        android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:scrollIndicators="bottom" />
+        android:layout_width="330dp" />
+
 
     <EditText
         android:text="SOS"

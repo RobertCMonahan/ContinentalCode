@@ -31,9 +31,7 @@ public class MainActivity extends AppCompatActivity {
     // create private class thing for each element that changes
     private EditText input_message;
     private TextView output_message;
-    private static final String TAG = "-DEBUG-";
     private static final boolean[] in_settings = {false};
-
 
 
     // **** Action Bar **** //
@@ -202,8 +200,6 @@ public class MainActivity extends AppCompatActivity {
                             public void run() {
                                 if (loopSwitch[0] == 1) {
                                     char currentChar = encoded_message.charAt(loopNumber[0]);
-                                    Log.d(TAG, "char:" + currentChar);
-
                                     if (currentChar == '.') {
                                         if (sound){
                                             dotSound.start();
@@ -267,13 +263,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                         };
                         handler.post(task);
-                        Log.v(TAG, "handler.post(task);");
-                        Log.v(TAG, "playStop[0]=" + playStop[0]);
-
-
-
-
-
                     }
                 }
         );
@@ -332,94 +321,94 @@ public class MainActivity extends AppCompatActivity {
         // each item in encodeDict is the morse code version of a letter with a space indicating the end of the letter
 
         // Alphabet
-        encodeDict.put('A', ".- ");
-        encodeDict.put('B', "-... ");
-        encodeDict.put('C', "-.-. ");
-        encodeDict.put('D', "-.. ");
-        encodeDict.put('E', ". ");
-        encodeDict.put('F', "..-. ");
-        encodeDict.put('G', "--. ");
-        encodeDict.put('H', ".... ");
-        encodeDict.put('I', ".. ");
-        encodeDict.put('J', ".--- ");
-        encodeDict.put('K', "-.- ");
-        encodeDict.put('L', ".-.. ");
+        encodeDict.put('A', "⋅- ");
+        encodeDict.put('B', "-⋅⋅⋅ ");
+        encodeDict.put('C', "-⋅-⋅ ");
+        encodeDict.put('D', "-⋅⋅ ");
+        encodeDict.put('E', "⋅ ");
+        encodeDict.put('F', "⋅⋅-⋅ ");
+        encodeDict.put('G', "--⋅ ");
+        encodeDict.put('H', "⋅⋅⋅⋅ ");
+        encodeDict.put('I', "⋅⋅ ");
+        encodeDict.put('J', "⋅--- ");
+        encodeDict.put('K', "-⋅- ");
+        encodeDict.put('L', "⋅-⋅⋅ ");
         encodeDict.put('M', "-- ");
-        encodeDict.put('N', "-. ");
+        encodeDict.put('N', "-⋅ ");
         encodeDict.put('O', "--- ");
-        encodeDict.put('P', ".--. ");
-        encodeDict.put('Q', "--.- ");
-        encodeDict.put('R', ".-. ");
-        encodeDict.put('S', "... ");
+        encodeDict.put('P', "⋅--⋅ ");
+        encodeDict.put('Q', "--⋅- ");
+        encodeDict.put('R', "⋅-⋅ ");
+        encodeDict.put('S', "⋅⋅⋅ ");
         encodeDict.put('T', "- ");
-        encodeDict.put('U', "..- ");
-        encodeDict.put('V', "...- ");
-        encodeDict.put('W', ".-- ");
-        encodeDict.put('X', "-..- ");
-        encodeDict.put('Y', "-.-- ");
-        encodeDict.put('Z', "--.. ");
+        encodeDict.put('U', "⋅⋅- ");
+        encodeDict.put('V', "⋅⋅⋅- ");
+        encodeDict.put('W', "⋅-- ");
+        encodeDict.put('X', "-⋅⋅- ");
+        encodeDict.put('Y', "-⋅-- ");
+        encodeDict.put('Z', "--⋅⋅ ");
         // Extended Alphabet
-        encodeDict.put('Ä', ".-.- ");
-        encodeDict.put('Æ', ".-.- ");
-        encodeDict.put('Ą', ".-.- ");
-        encodeDict.put('Á', ".--.- ");
-        encodeDict.put('Å', ".--.- ");
-        encodeDict.put('Ĉ', "-.-.. ");
-        encodeDict.put('Ć', "-.-.. ");
-        encodeDict.put('Ç', "-.-.. ");
+        encodeDict.put('Ä', "⋅-⋅- ");
+        encodeDict.put('Æ', "⋅-⋅- ");
+        encodeDict.put('Ą', "⋅-⋅- ");
+        encodeDict.put('Á', "⋅--⋅- ");
+        encodeDict.put('Å', "⋅--⋅- ");
+        encodeDict.put('Ĉ', "-⋅-⋅⋅ ");
+        encodeDict.put('Ć', "-⋅-⋅⋅ ");
+        encodeDict.put('Ç', "-⋅-⋅⋅ ");
         encodeDict.put('Ĥ', "---- "); //Also CH
         encodeDict.put('Š', "---- ");
-        encodeDict.put('Đ', "..-.. ");
-        encodeDict.put('Ę', "..-.. ");
-        encodeDict.put('É', "..-.. ");
-        encodeDict.put('È', ".-..- ");
-        encodeDict.put('Ł', ".-..- ");
-        encodeDict.put('Ĝ', "--.-. ");
-        encodeDict.put('Ĵ', ".---. ");
-        encodeDict.put('Ń', "--.-- ");
-        encodeDict.put('Ñ', "--.-- ");
-        encodeDict.put('Ö', "---. ");
-        encodeDict.put('Ó', "---. ");
-        encodeDict.put('Ö', "---. ");
-        encodeDict.put('Ø', "---. ");
-        encodeDict.put('Ś', "...-... ");
-        encodeDict.put('Ŝ', "...-. ");
-        encodeDict.put('Þ', ".--.. ");
-        encodeDict.put('Ŭ', "..-- ");
-        encodeDict.put('Ü', "..-- ");
-        encodeDict.put('Ź', "--..-. ");
-        encodeDict.put('Ż', "--..- ");
+        encodeDict.put('Đ', "⋅⋅-⋅⋅ ");
+        encodeDict.put('Ę', "⋅⋅-⋅⋅ ");
+        encodeDict.put('É', "⋅⋅-⋅⋅ ");
+        encodeDict.put('È', "⋅-⋅⋅- ");
+        encodeDict.put('Ł', "⋅-⋅⋅- ");
+        encodeDict.put('Ĝ', "--⋅-⋅ ");
+        encodeDict.put('Ĵ', "⋅---⋅ ");
+        encodeDict.put('Ń', "--⋅-- ");
+        encodeDict.put('Ñ', "--⋅-- ");
+        encodeDict.put('Ö', "---⋅ ");
+        encodeDict.put('Ó', "---⋅ ");
+        encodeDict.put('Ö', "---⋅ ");
+        encodeDict.put('Ø', "---⋅ ");
+        encodeDict.put('Ś', "⋅⋅⋅-⋅⋅⋅ ");
+        encodeDict.put('Ŝ', "⋅⋅⋅-⋅ ");
+        encodeDict.put('Þ', "⋅--⋅⋅ ");
+        encodeDict.put('Ŭ', "⋅⋅-- ");
+        encodeDict.put('Ü', "⋅⋅-- ");
+        encodeDict.put('Ź', "--⋅⋅-⋅ ");
+        encodeDict.put('Ż', "--⋅⋅- ");
         // Digits
-        encodeDict.put('1', ".---- ");
-        encodeDict.put('2', "..--- ");
-        encodeDict.put('3', "...-- ");
-        encodeDict.put('4', "....- ");
-        encodeDict.put('5', "..... ");
-        encodeDict.put('6', "-.... ");
-        encodeDict.put('7', "--... ");
-        encodeDict.put('8', "---.. ");
-        encodeDict.put('9', "----. ");
+        encodeDict.put('1', "⋅---- ");
+        encodeDict.put('2', "⋅⋅--- ");
+        encodeDict.put('3', "⋅⋅⋅-- ");
+        encodeDict.put('4', "⋅⋅⋅⋅- ");
+        encodeDict.put('5', "⋅⋅⋅⋅⋅ ");
+        encodeDict.put('6', "-⋅⋅⋅⋅ ");
+        encodeDict.put('7', "--⋅⋅⋅ ");
+        encodeDict.put('8', "---⋅⋅ ");
+        encodeDict.put('9', "----⋅ ");
         encodeDict.put('0', "----- ");
         // Punctuation
-        encodeDict.put('.', ".-.-.- ");
-        encodeDict.put(',', "--..-- ");
-        encodeDict.put(':', "---... ");
-        encodeDict.put('?', "..--.. ");
-        encodeDict.put('\'', ".----. ");
-        encodeDict.put('-', "-....- ");
-        encodeDict.put('/', "-..-. ");
-        encodeDict.put('"', ".-..-. ");
-        encodeDict.put('@', ".--.-. ");
-        encodeDict.put('=', "-...- ");
-        encodeDict.put('!', "−.−.−− ");
-        encodeDict.put('(', "-.--. ");
-        encodeDict.put(')', "-.--.- ");
-        encodeDict.put('&', ".-... ");
-        encodeDict.put(';', "-.-.-. ");
-        encodeDict.put('+', ".-.-. ");
-        encodeDict.put('_', "..--.- ");
-        encodeDict.put('$', "...-..- ");
-        encodeDict.put('Ŝ', "...-. ");
+        encodeDict.put('.', "⋅-⋅-⋅- ");
+        encodeDict.put(',', "--⋅⋅-- ");
+        encodeDict.put(':', "---⋅⋅⋅ ");
+        encodeDict.put('?', "⋅⋅--⋅⋅ ");
+        encodeDict.put('\'', "⋅----⋅ ");
+        encodeDict.put('-', "-⋅⋅⋅⋅- ");
+        encodeDict.put('/', "-⋅⋅-⋅ ");
+        encodeDict.put('"', "⋅-⋅⋅-⋅ ");
+        encodeDict.put('@', "⋅--⋅-⋅ ");
+        encodeDict.put('=', "-⋅⋅⋅- ");
+        encodeDict.put('!', "−⋅−⋅−− ");
+        encodeDict.put('(', "-⋅--⋅ ");
+        encodeDict.put(')', "-⋅--⋅- ");
+        encodeDict.put('&', "⋅-⋅⋅⋅ ");
+        encodeDict.put(';', "-⋅-⋅-⋅ ");
+        encodeDict.put('+', "⋅-⋅-⋅ ");
+        encodeDict.put('_', "⋅⋅--⋅- ");
+        encodeDict.put('$', "⋅⋅⋅-⋅⋅- ");
+        encodeDict.put('Ŝ', "⋅⋅⋅-⋅ ");
         // a space (end of word)
         encodeDict.put(' ', "  ");
 
