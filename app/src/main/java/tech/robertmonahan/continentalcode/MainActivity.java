@@ -3,6 +3,7 @@ package tech.robertmonahan.continentalcode;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.media.MediaPlayer;
@@ -10,7 +11,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +29,7 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 
+import static tech.robertmonahan.continentalcode.R.id.end;
 import static tech.robertmonahan.continentalcode.R.id.settings_button;
 
 
@@ -32,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText input_message;
     private TextView output_message;
     private static final boolean[] in_settings = {false};
+
+    private String TAG = "--Debug--";
 
 
     // **** Action Bar **** //
@@ -129,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         // start morse code
         play_pause_button.setOnClickListener(
                 new View.OnClickListener(){
-                    public void onClick(View view) {
+                    public void onClick(final View view) {
                         if (playStop[0].equals("stop")){
                             playStop[0] = "play";
                             play_pause_button.setBackgroundResource(R.drawable.pause);
@@ -194,13 +203,60 @@ public class MainActivity extends AppCompatActivity {
                         final int[] loopNumber = {0}; // this is equivalent to 'int i=0;' in a normal for loop
                         final int[] timeBetweenLoop = {0}; // sets the time delay between each loop
                         final int[] loopSwitch = {1};
+                        final int[] letterPosition = {0}; // tracks letter that you are currently on for Karaoke Highlighting
+                        final String input_message_save = input_message.getText().toString(); // save text so that it can be used to reset text color
+                        final String output_message_save = output_message.getText().toString();
 
                         Runnable task = new Runnable() {
                             @Override
                             public void run() {
+                                /*
+                                 * Karaoke, Highlight text for output_message
+                                 * Would You Like to Know More?
+                                 * https://stackoverflow.com/questions/8388341/how-to-make-dynamic-change-of-textview-and-ui-in-general
+                                 */
+                                Spannable messageToSpan = new SpannableString(output_message.getText());
+                                messageToSpan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 0 , (loopNumber[0] + 1) , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                output_message.setText(messageToSpan);
+
+
+                                Spannable messageToSpan2 = new SpannableString(input_message.getText());
+
+
                                 if (loopSwitch[0] == 1) {
                                     char currentChar = encoded_message.charAt(loopNumber[0]);
-                                    if (currentChar == '.') {
+
+                                    // Prevent trying to get a char from outside the string length for the nextChar var
+                                    char nextChar = ' ';
+                                    char twoChar = ' ';
+                                    char threeChar = ' ';
+
+                                    if (loopNumber[0] < encoded_message.length()-3) {
+                                        nextChar = encoded_message.charAt(loopNumber[0] + 1);
+                                        twoChar = encoded_message.charAt(loopNumber[0] + 2);
+                                        threeChar = encoded_message.charAt(loopNumber[0] + 3);
+                                    }
+
+                                    if (nextChar == ' '){
+                                        // Karaoke, Highlight text for input_message
+                                        messageToSpan2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 0, (letterPosition[0] + 1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                        input_message.setText(messageToSpan2);
+                                        // when there is 3 spaces (space between words) prevent karaoke from highlighting ahead of where it should be
+                                        if ( (threeChar == ' ') && (twoChar == ' ') ) {
+
+                                        } else {
+                                            letterPosition[0] = letterPosition[0] + 1;
+                                        }
+                                    }
+
+
+
+
+
+
+
+                                    // dot
+                                    if (currentChar == '⋅') {
                                         if (sound){
                                             dotSound.start();
                                         }
@@ -214,6 +270,7 @@ public class MainActivity extends AppCompatActivity {
                                         timeBetweenLoop[0] = oneUnit;
 
 
+                                    // dash
                                     } else if (currentChar == '-') {
                                         if (sound){
                                             dashSound.start();
@@ -224,11 +281,13 @@ public class MainActivity extends AppCompatActivity {
                                         flashing_rectangle.setEnabled(true);
                                         timeBetweenLoop[0] = 3 * oneUnit;
 
+                                    // space between letters & words
                                     } else if (currentChar == ' ') {
                                         timeBetweenLoop[0] = 2 * oneUnit; // space between letters
 
-                                    } else if (currentChar == '/') {
-                                        timeBetweenLoop[0] = 2 * oneUnit; // space between words
+
+
+
 
                                     } else {
                                         timeBetweenLoop[0] = 0;
@@ -246,6 +305,9 @@ public class MainActivity extends AppCompatActivity {
                                     timeBetweenLoop[0] = oneUnit; // space between parts of the same letters
                                     loopSwitch[0] = 1; // switch back to light on
                                 }
+
+
+
                                 handler.postDelayed(this, timeBetweenLoop[0]); // loops the runnable
                                 if ((loopNumber[0] >= encoded_message.length()) || ( playStop[0].equals("stop")) || (in_settings[0])) {
                                     // when the message is done or
@@ -259,12 +321,20 @@ public class MainActivity extends AppCompatActivity {
 
                                     playStop[0] = ("stop"); // set back to stop
                                     play_pause_button.setBackgroundResource(R.drawable.play); // change button image back to play button
+
+                                    // reset the input_message & output_message text color by setting the text as the original
+                                    input_message.setText(input_message_save, TextView.BufferType.EDITABLE);
+                                    output_message.setText(output_message_save);
+
+
                                 }
                             }
                         };
                         handler.post(task);
+
                     }
                 }
+
         );
     }
 
