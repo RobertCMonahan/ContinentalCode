@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                         final int[] loopNumber = {0}; // this is equivalent to 'int i=0;' in a normal for loop
                         final int[] timeBetweenLoop = {0}; // sets the time delay between each loop
                         final int[] loopSwitch = {1};
-                        final int[] letterPosition = {0}; // tracks letter that you are currently on for Karaoke Highlighting
+                        final int[] letterPosition = {2}; // tracks letter that you are currently on for Karaoke Highlighting
                         final String input_message_save = input_message.getText().toString(); // save text so that it can be used to reset text color
                         final String output_message_save = output_message.getText().toString();
 
@@ -226,29 +226,37 @@ public class MainActivity extends AppCompatActivity {
                                 if (loopSwitch[0] == 1) {
                                     char currentChar = encoded_message.charAt(loopNumber[0]);
 
-                                    // Prevent trying to get a char from outside the string length for the nextChar var
-                                    char nextChar = ' ';
-                                    char twoChar = ' ';
-                                    char threeChar = ' ';
 
-                                    if (loopNumber[0] < encoded_message.length()-3) {
-                                        nextChar = encoded_message.charAt(loopNumber[0] + 1);
-                                        twoChar = encoded_message.charAt(loopNumber[0] + 2);
-                                        threeChar = encoded_message.charAt(loopNumber[0] + 3);
-                                    }
 
-                                    if (nextChar == ' '){
-                                        // Karaoke, Highlight text for input_message
-                                        messageToSpan2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 0, (letterPosition[0] + 1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                        input_message.setText(messageToSpan2);
-                                        // when there is 3 spaces (space between words) prevent karaoke from highlighting ahead of where it should be
-                                        if ( (threeChar == ' ') && (twoChar == ' ') ) {
-
-                                        } else {
-                                            letterPosition[0] = letterPosition[0] + 1;
+                                    if (loopNumber[0] == 0){ //First letter
+                                       messageToSpan2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                       input_message.setText(messageToSpan2);
+                                       Log.v(TAG, "first letter ");
+                                    } else {
+                                        Log.v(TAG, "else letter ");
+                                        Log.v(TAG, "currentChar = "+ currentChar);
+                                        char lastChar = encoded_message.charAt(loopNumber[0] - 1);
+                                        char twoChar = ' ';
+                                        if (loopNumber[0] > 2) { // Prevent trying to get a char from outside the string length for the nextChar var
+                                            twoChar = encoded_message.charAt(loopNumber[0] - 2);
                                         }
-                                    }
 
+                                        if ((currentChar != ' ') && (lastChar == ' ') && (twoChar != ' ')){ // Conditions for a space between letters
+                                            // Karaoke, Highlight text for input_message
+                                            messageToSpan2.setSpan(new BackgroundColorSpan(getResources().getColor(R.color.colorPrimary)), 0, (letterPosition[0]), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                            input_message.setText(messageToSpan2);
+                                            letterPosition[0] = letterPosition[0] + 1;
+
+                                        } else if ((currentChar != ' ') && (lastChar == ' ') && (twoChar == ' ')){ // Conditions for a space between words
+                                            // Karaoke, Highlight text for input_message
+                                            messageToSpan2.setSpan(new BackgroundColorSpan(getResources().getColor(R.color.colorPrimary)), 0, (letterPosition[0]), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                            input_message.setText(messageToSpan2);
+                                            letterPosition[0] = letterPosition[0] + 2;
+
+                                        }
+                                        Log.v(TAG, "letterPosition = "+ letterPosition[0]);
+
+                                    }
 
 
 
@@ -285,10 +293,7 @@ public class MainActivity extends AppCompatActivity {
                                     } else if (currentChar == ' ') {
                                         timeBetweenLoop[0] = 2 * oneUnit; // space between letters
 
-
-
-
-
+                                    // unknown chars
                                     } else {
                                         timeBetweenLoop[0] = 0;
                                     }
