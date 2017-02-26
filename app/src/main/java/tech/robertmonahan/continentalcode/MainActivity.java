@@ -3,7 +3,6 @@ package tech.robertmonahan.continentalcode;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.media.MediaPlayer;
@@ -11,13 +10,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,19 +26,15 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 
-import static tech.robertmonahan.continentalcode.R.id.end;
 import static tech.robertmonahan.continentalcode.R.id.settings_button;
 
-
+@RequiresApi(api = Build.VERSION_CODES.M)
 public class MainActivity extends AppCompatActivity {
 
     // create private class thing for each element that changes
     private EditText input_message;
     private TextView output_message;
     private static final boolean[] in_settings = {false};
-
-    private String TAG = "--Debug--";
-
 
     // **** Action Bar **** //
     /*
@@ -240,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
 
                                         } else if ((currentChar != ' ') && (lastChar == ' ') && (twoChar == ' ')){ // Conditions for a space between words
                                             // Karaoke, Highlight text for input_message
-                                            letterPosition[0] = letterPosition[0] + 2; // Add two for space & letter chars
+                                            letterPosition[0] = letterPosition[0] + 1; // Add two for space & letter chars
                                             messageToSpan2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 1, letterPosition[0], Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                                             input_message.setText(messageToSpan2);
                                         }
@@ -340,6 +333,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // **** Utils **** //
+
 
     protected void lightOn(){
             /* flashlight code shamelessly taken from stackoverflow
