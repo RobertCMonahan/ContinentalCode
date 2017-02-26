@@ -203,64 +203,56 @@ public class MainActivity extends AppCompatActivity {
                         final int[] loopNumber = {0}; // this is equivalent to 'int i=0;' in a normal for loop
                         final int[] timeBetweenLoop = {0}; // sets the time delay between each loop
                         final int[] loopSwitch = {1};
-                        final int[] letterPosition = {2}; // tracks letter that you are currently on for Karaoke Highlighting
+                        final int[] letterPosition = {1}; // tracks letter that you are currently on for Karaoke Highlighting
                         final String input_message_save = input_message.getText().toString(); // save text so that it can be used to reset text color
                         final String output_message_save = output_message.getText().toString();
 
                         Runnable task = new Runnable() {
                             @Override
                             public void run() {
-                                /*
-                                 * Karaoke, Highlight text for output_message
-                                 * Would You Like to Know More?
-                                 * https://stackoverflow.com/questions/8388341/how-to-make-dynamic-change-of-textview-and-ui-in-general
-                                 */
-                                Spannable messageToSpan = new SpannableString(output_message.getText());
-                                messageToSpan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 0 , (loopNumber[0] + 1) , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                output_message.setText(messageToSpan);
 
-
-                                Spannable messageToSpan2 = new SpannableString(input_message.getText());
-
-
+                                // Loop Switch flips every times it's looped, turning the light on & off to create breaks between dots and a dashes
                                 if (loopSwitch[0] == 1) {
                                     char currentChar = encoded_message.charAt(loopNumber[0]);
 
 
-
-                                    if (loopNumber[0] == 0){ //First letter
+                                    /*
+                                     * Karaoke, Highlight text for input_message
+                                     * Would You Like to Know More?
+                                     * https://stackoverflow.com/questions/8388341/how-to-make-dynamic-change-of-textview-and-ui-in-general
+                                     */
+                                    Spannable messageToSpan2 = new SpannableString(input_message.getText());
+                                    if (loopNumber[0] == 0){ // First letter highlight immediately when play is pressed
                                        messageToSpan2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                                        input_message.setText(messageToSpan2);
-                                       Log.v(TAG, "first letter ");
-                                    } else {
-                                        Log.v(TAG, "else letter ");
-                                        Log.v(TAG, "currentChar = "+ currentChar);
-                                        char lastChar = encoded_message.charAt(loopNumber[0] - 1);
+                                    } else { // For all other letters
+                                        char lastChar = encoded_message.charAt(loopNumber[0] - 1); //get the value of the last char
                                         char twoChar = ' ';
                                         if (loopNumber[0] > 2) { // Prevent trying to get a char from outside the string length for the nextChar var
-                                            twoChar = encoded_message.charAt(loopNumber[0] - 2);
+                                            twoChar = encoded_message.charAt(loopNumber[0] - 2); // get value for 2 chars ago
                                         }
 
+
                                         if ((currentChar != ' ') && (lastChar == ' ') && (twoChar != ' ')){ // Conditions for a space between letters
-                                            // Karaoke, Highlight text for input_message
-                                            messageToSpan2.setSpan(new BackgroundColorSpan(getResources().getColor(R.color.colorPrimary)), 0, (letterPosition[0]), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                            letterPosition[0] = letterPosition[0] + 1; // Add one for a single char
+                                            messageToSpan2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 1, letterPosition[0], Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                                             input_message.setText(messageToSpan2);
-                                            letterPosition[0] = letterPosition[0] + 1;
 
                                         } else if ((currentChar != ' ') && (lastChar == ' ') && (twoChar == ' ')){ // Conditions for a space between words
                                             // Karaoke, Highlight text for input_message
-                                            messageToSpan2.setSpan(new BackgroundColorSpan(getResources().getColor(R.color.colorPrimary)), 0, (letterPosition[0]), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                            letterPosition[0] = letterPosition[0] + 2; // Add two for space & letter chars
+                                            messageToSpan2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 1, letterPosition[0], Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                                             input_message.setText(messageToSpan2);
-                                            letterPosition[0] = letterPosition[0] + 2;
-
                                         }
-                                        Log.v(TAG, "letterPosition = "+ letterPosition[0]);
-
                                     }
-
-
-
-
+                                 /*
+                                 * Karaoke, Highlight text for output_message
+                                 * Would You Like to Know More?
+                                 * https://stackoverflow.com/questions/8388341/how-to-make-dynamic-change-of-textview-and-ui-in-general
+                                 */
+                                    Spannable messageToSpan = new SpannableString(output_message.getText());
+                                    messageToSpan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 0 , (loopNumber[0] + 1) , Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                    output_message.setText(messageToSpan);
 
 
                                     // dot
