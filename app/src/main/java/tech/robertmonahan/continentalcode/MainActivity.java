@@ -225,17 +225,15 @@ public class MainActivity extends AppCompatActivity {
                                             twoChar = encoded_message.charAt(loopNumber[0] - 2); // get value for 2 chars ago
                                         }
 
-
-                                        if ((currentChar != ' ') && (lastChar == ' ') && (twoChar != ' ')){ // Conditions for a space between letters
-                                            letterPosition[0] = letterPosition[0] + 1; // Add one for a single char
+                                        // Conditions for a space between letters
+                                        if ( ((currentChar != ' ') && (lastChar == ' ') && ((twoChar != ' ') || (twoChar == ' '))) ) {
+                                            letterPosition[0] = letterPosition[0] + 1; // move the letter position forward for char
+                                            // highlight
                                             messageToSpan2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 1, letterPosition[0], Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                                             input_message.setText(messageToSpan2);
 
-                                        } else if ((currentChar != ' ') && (lastChar == ' ') && (twoChar == ' ')){ // Conditions for a space between words
-                                            // Karaoke, Highlight text for input_message
-                                            letterPosition[0] = letterPosition[0] + 1; // Add two for space & letter chars
-                                            messageToSpan2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 1, letterPosition[0], Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                            input_message.setText(messageToSpan2);
+                                        } else if ((currentChar == ' ') && (lastChar == ' ') && (twoChar == ' ')){ // Conditions for a space between words
+                                            letterPosition[0] = letterPosition[0] + 1; // move the letter position forward for space
                                         }
                                     }
                                  /*
